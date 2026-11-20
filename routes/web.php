@@ -21,6 +21,7 @@ use Inertia\Inertia;
 //     return Inertia::render('Dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
+
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 //     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -48,6 +49,7 @@ use Inertia\Inertia;
         return Inertia::render('MainPages/Inscriptions');
     });
 
+
     // ***************************************************************************** */
     // ------- Inscriptions Details route ------- /
     // ***************************************************************************** */
@@ -60,16 +62,16 @@ use Inertia\Inertia;
     })->name('inscriptions.details');
 
 
-// Route::get(
-//     '/palaeographical/{categorySlug?}/{subCategorySlug?}/{childCategorySlug?}',
-//     function ($categorySlug = null, $subCategorySlug = null, $childCategorySlug = null) {
-//         return Inertia::render('MainPages/Palaeographical', [
-//             'categorySlug' => $categorySlug,
-//             'subCategorySlug' => $subCategorySlug,
-//             'childCategorySlug' => $childCategorySlug,
-//         ]);
-//     }
-// )->name('palaeographical');
+    // Route::get(
+    //     '/palaeographical/{categorySlug?}/{subCategorySlug?}/{childCategorySlug?}',
+    //     function ($categorySlug = null, $subCategorySlug = null, $childCategorySlug = null) {
+    //     return Inertia::render('MainPages/Palaeographical', [
+    //         'categorySlug' => $categorySlug,
+    //         'subCategorySlug' => $subCategorySlug,
+    //         'childCategorySlug' => $childCategorySlug,
+    //     ]);
+    // }
+    // )->name('palaeographical');
 
 
 
