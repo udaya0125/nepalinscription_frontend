@@ -27,19 +27,38 @@ use Inertia\Inertia;
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
+
+
+    // ***************************************************************************** */
+    // ------- Home route ------- /
+    // ***************************************************************************** */
+
+
     Route::get('/', function () {
-     return Inertia::render('MainPages/Welcome');
+        return Inertia::render('MainPages/Welcome');
     });
 
-Route::get('/inscriptions', function () {
-    return Inertia::render('MainPages/Inscriptions');
-});
 
-Route::get('/{slug}/details', function ($slug) {
-    return Inertia::render('MainPages/InscriptionsDetails', [
+    // ***************************************************************************** */
+    // ------- Inscriptions route ------- /
+    // ***************************************************************************** */
+
+
+    Route::get('/inscriptions', function () {
+        return Inertia::render('MainPages/Inscriptions');
+    });
+
+    // ***************************************************************************** */
+    // ------- Inscriptions Details route ------- /
+    // ***************************************************************************** */
+
+
+    Route::get('/{slug}/details', function ($slug) {
+        return Inertia::render('MainPages/InscriptionsDetails', [
         'slug' => $slug,
     ]);
-})->name('inscriptions.details');
+    })->name('inscriptions.details');
+
 
 // Route::get(
 //     '/palaeographical/{categorySlug?}/{subCategorySlug?}/{childCategorySlug?}',
@@ -52,82 +71,178 @@ Route::get('/{slug}/details', function ($slug) {
 //     }
 // )->name('palaeographical');
 
-Route::get('/palaeographical/{categorySlug?}/{subCategorySlug?}/{childCategorySlug?}', function () {
-    return Inertia::render('MainPages/Palaeographical');
-});
 
-Route::get('/terms', function () {
-    return Inertia::render('MainPages/TermsAndConditions');
-})->name('terms');
 
-Route::fallback(function () {
-    return Inertia::render('MainPages/NotFound')->toResponse(request())->setStatusCode(404);
-});
+    // ***************************************************************************** */
+    // ------- Palaeographical route ------- /
+    // ***************************************************************************** */
 
-Route::get('/publication', function () {
+
+    Route::get('/palaeographical/{categorySlug?}/{subCategorySlug?}/{childCategorySlug?}', function () {
+        return Inertia::render('MainPages/Palaeographical');
+    });
+
+
+    // ***************************************************************************** */
+    // ------- Terms and Conditions route ------- /
+    // ***************************************************************************** */
+
+
+    Route::get('/terms', function () {
+        return Inertia::render('MainPages/TermsAndConditions');
+    })->name('terms');
+
+
+    // ***************************************************************************** */
+    // ------- Not Found route ------- /
+    // ***************************************************************************** */
+
+    Route::fallback(function () {
+        return Inertia::render('MainPages/NotFound')->toResponse(request())->setStatusCode(404);
+    });
+
+
+    // ***************************************************************************** */
+    // ------- Publication route ------- /
+    // ***************************************************************************** */
+
+    Route::get('/publication', function () {
     return Inertia::render('MainPages/Comingsoon', [
         'pageName' => 'Publication',
     ]);
-})->name('publication');
+    })->name('publication');
 
-Route::get('/gallery', function () {
-    return Inertia::render('MainPages/Comingsoon', [
+
+    // ***************************************************************************** */
+    // ------- Gallery route ------- /
+    // ***************************************************************************** */
+
+
+    Route::get('/gallery', function () {
+        return Inertia::render('MainPages/Comingsoon', [
         'pageName' => 'Gallery',
-    ]);
-})->name('gallery');
+        ]);
+    })->name('gallery');
 
-Route::get('/partners', function () {
+
+    // ***************************************************************************** */
+    // ------- Partners route ------- /
+    // ***************************************************************************** */
+
+    Route::get('/partners', function () {
     return Inertia::render('MainPages/Comingsoon', [
         'pageName' => 'Partners',
     ]);
-})->name('partners');
+    })->name('partners');
 
-Route::get('/events', function () {
+
+    // ***************************************************************************** */
+    // ------- Events route ------- /
+    // ***************************************************************************** */
+
+    Route::get('/events', function () {
     return Inertia::render('MainPages/Comingsoon', [
         'pageName' => 'Event',
     ]);
-})->name('events');
+    })->name('events');
 
-Route::get('/team', function () {
+
+    // ***************************************************************************** */
+    // ------- Team route ------- /
+    // ***************************************************************************** */
+
+
+    Route::get('/team', function () {
     return Inertia::render('MainPages/Comingsoon', [
         'pageName' => 'Team',
     ]);
-})->name('team');
+    })->name('team');
 
-Route::get('/about', function () {
-    return Inertia::render('MainPages/Comingsoon', [
-        'pageName' => 'About',
-    ]);
-})->name('about');
 
-Route::get('/ourusers', [UserController::class, 'index'])->name('ourusers.index');
-Route::post('/ourusers', [UserController::class, 'store'])->name('ourusers.store');
-Route::put('/ourusers/{user}', [UserController::class, 'update'])->name('ourusers.update');
-Route::delete('/ourusers/{user}', [UserController::class, 'destroy'])->name('ourusers.destroy');
+    // ***************************************************************************** */
+    // ------- About route ------- /
+    // ***************************************************************************** */
+
+
+    Route::get('/about', function () {
+        return Inertia::render('MainPages/Comingsoon', [
+            'pageName' => 'About',
+        ]);
+    })->name('about');
+
+
+    // ***************************************************************************** */
+    // ------- Admin Dashboard route ------- /
+    // ***************************************************************************** */
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
+
+    // ***************************************************************************** */
+    // ------- Admin Dashboard route ------- /
+    // ***************************************************************************** */
+
+
     Route::get('/admin-dashboard', function () {
         return Inertia::render('AdminPages/Dashboard');
     });
+
+
+    // ***************************************************************************** */
+    // ------- Activity Log route ------- /
+    // ***************************************************************************** */
+
 
     Route::get('/activity-logs', function () {
         return Inertia::render('AdminPages/ActivityLogs');
     });
 
+
+    // ***************************************************************************** */
+    // ------- User Management route ------- /
+    // ***************************************************************************** */
+
+
     Route::get('/user-management', function () {
         return Inertia::render('AdminPages/UserManagement');
     });
+
+
+    // ***************************************************************************** */
+    // ------- Activity Log Controller route ------- /
+    // ***************************************************************************** */
+
+
+    Route::get('/ourlogs', [ActivityLogController::class, 'index'])->name('ourlogs.index');
+
+
+    // ***************************************************************************** */
+    // ------- Notification Management Controller route ------- /
+    // ***************************************************************************** */
+    
+    Route::get('/ournotifications', [NotificationController::class, 'index'])->name('ournotifications.index');
+    Route::patch('/ournotifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('ournotifications.mark-all-as-read');
+    Route::patch('/ournotifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('ournotifications.mark-as-read');
+    Route::delete('/ournotifications/{notification}', [NotificationController::class, 'destroy'])->name('ournotifications.destroy');
+
+
+    // ***************************************************************************** */
+    // ------- User Management Controller route ------- /
+    // ***************************************************************************** */
+
+
+    Route::get('/ourusers', [UserController::class, 'index'])->name('ourusers.index');
+    Route::post('/ourusers', [UserController::class, 'store'])->name('ourusers.store');
+    Route::put('/ourusers/{user}', [UserController::class, 'update'])->name('ourusers.update');
+    Route::delete('/ourusers/{user}', [UserController::class, 'destroy'])->name('ourusers.destroy');
+
 });
 
-Route::get('/ourlogs', [ActivityLogController::class, 'index'])->name('ourlogs.index');
+
 
 // Route::get('/ournotifications', [NotificationController::class, 'index'])->name('ournotifications.index');
 // Route::patch('/ournotifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('ournotifications.mark-all-as-read');
 // Route::patch('/ournotifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('ournotifications.mark-as-read');
 
-Route::get('/ournotifications', [NotificationController::class, 'index'])->name('ournotifications.index');
-Route::patch('/ournotifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('ournotifications.mark-all-as-read');
-Route::patch('/ournotifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('ournotifications.mark-as-read');
-Route::delete('/ournotifications/{notification}', [NotificationController::class, 'destroy'])->name('ournotifications.destroy');
+
 
 require __DIR__.'/auth.php';
