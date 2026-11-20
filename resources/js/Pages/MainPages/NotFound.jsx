@@ -39,7 +39,7 @@ import { Link } from '@inertiajs/react';
 import GuestLayout from '@/Layouts/GuestLayout'
 
 
-const notfoundImg = '/images/not_found_new.webp'; // put image here
+const notfoundImg = '/images/not_found_new.webp'; 
 
 const NotFound = () => {
   return (
